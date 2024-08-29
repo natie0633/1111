@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 375px;
+            height: 300px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="swiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 分页器 -->
+        <div class="swiper-pagination"></div>
+        <!--导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!--滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <button id="btn-prev">上一个</button>
+    <button id="btn-next">下一个</button>
+    <button class="btn-index" data-index="0">1</button>
+    <button class="btn-index" data-index="1">2</button>
+    <button class="btn-index" data-index="2">3</button>
+
+    <script src="./swiper-bundle.min.js"></script>
+    <script>
+        const mySwiper = new Swiper('#swiper', {
+            initialSlide: 0,
+            direction: 'horizontal', // 水平切换
+            // direction: 'vertical' // 垂直切换
+            speed: 300,
+            // effect: 'slide', // 默认，位移切换
+            // effect: 'fade', // 淡入
+            // fadeEffect: {
+            //   crossFade: true
+            // },
+            // effect: 'cube' // 方块
+            // effect: 'coverflow' // 3d流
+            // effect: 'flip' // 3d翻转
+            grabCursor: true,
+            on: {
+                init: function (swiper) {
+                    console.log(this === swiper);
+                    console.log('init');
+                    console.log(this);
+                    console.log(this.activeIndex);
+                    console.log(this.previousIndex);
+                    console.log(this.width, this.height);
+                },
+                slideChangeTransitionStart: function (swiper) {
+                    console.log(this === swiper);
+                    console.log('slideChangeTransitionStart');
+                    console.log(this.activeIndex);
+                    console.log(this.previousIndex);
+                },
+                slideChangeTransitionEnd: function (swiper) {
+                    console.log(this === swiper);
+                    console.log('slideChangeTransitionEnd');
+                }
+            },
+            // autoplay: true,
+            // autoplay: {
+            //   delay: 1000,
+            //   stopOnLastSlide: false,
+            //   disableOnInteraction: true
+            // }
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable: true,
+                dragSize: 30
+            },
+            keyboard: true,
+            mousewheel: true
+        });
+        const $prevBtn = document.getElementById('btn-prev');
+        const $nextBtn = document.getElementById('btn-next');
+        $prevBtn.addEventListener(
+            'click',
+            () => {
+                mySwiper.slidePrev();
+            },
+            false
+        );
+        $nextBtn.addEventListener(
+            'click',
+            () => {
+                mySwiper.slideNext();
+            },
+            false
+        );
+        const $indexBtns = document.querySelectorAll('.btn-index');
+        for (const $el of $indexBtns) {
+            $el.addEventListener(
+                'click',
+                () => {
+                    mySwiper.slideTo($el.dataset.index);
+                },
+                false
+            );
+        }
+    </script>
+</body>
+
+</html>

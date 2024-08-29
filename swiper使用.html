@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./swiper-bundle.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 375px;
+            height: 300px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Swiper 官网：https://www.swiper.com.cn   使用方法：https://www.swiper.com.cn/usage/index.html -->
+    <div id="swiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 分页器 -->
+        <div class="swiper-pagination"></div>
+        <!-- 导航 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- 滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <script src="./swiper-bundle.min.js"></script>
+    <script>
+        // Swiper 先加载文件 swiper-bundle.min.js 和 swiper-bundle.min.css  后初始化
+        const mySwiper = new Swiper('#swiper', {
+            loop: true, 
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            // 前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            // 滚动条
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+
+    </script>
+</body>
+
+</html>
